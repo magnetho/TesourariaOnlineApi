@@ -15,7 +15,7 @@ namespace TesourariaOnline.Models
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
 
-        public TipoCedula TipoCedula { get; set; }
-        public ICollection<ContagemCedula> ContagemCedula { get; set; }
+        public virtual TipoCedula TipoCedula { get; set; }
+        public virtual ICollection<ContagemCedula> ContagemCedula { get; set; }
     }
 }

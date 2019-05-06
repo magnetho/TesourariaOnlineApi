@@ -10,7 +10,7 @@ namespace TesourariaOnline.Models
         public int CedulaId { get; set; }
         public int Quantidade { get; set; }
 
-        public Cedula Cedula { get; set; }
-        public ContagemResumo ContagemResumo { get; set; }
+        public virtual Cedula Cedula { get; set; }
+        public virtual ContagemResumo ContagemResumo { get; set; }
     }
 }

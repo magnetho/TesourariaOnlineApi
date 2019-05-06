@@ -17,6 +17,6 @@ namespace TesourariaOnline.Models
         public string Usuario { get; set; }
         public DateTime DataAlteracao { get; set; }
 
-        public ICollection<ContagemResumo> ContagemResumo { get; set; }
+        public virtual ICollection<ContagemResumo> ContagemResumo { get; set; }
     }
 }

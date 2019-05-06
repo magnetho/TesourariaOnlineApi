@@ -20,8 +20,8 @@ namespace TesourariaOnline.Models
         public string Usuario { get; set; }
         public DateTime DataAlteracao { get; set; }
 
-        public Movimento Movimento { get; set; }
-        public ICollection<ContagemCedula> ContagemCedula { get; set; }
-        public ICollection<ContagemCheque> ContagemCheque { get; set; }
+        public virtual Movimento Movimento { get; set; }
+        public virtual ICollection<ContagemCedula> ContagemCedula { get; set; }
+        public virtual ICollection<ContagemCheque> ContagemCheque { get; set; }
     }
 }

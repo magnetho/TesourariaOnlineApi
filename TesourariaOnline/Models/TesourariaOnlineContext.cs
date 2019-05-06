@@ -21,23 +21,29 @@ namespace TesourariaOnline.Models
         public virtual DbSet<ContagemResumo> ContagemResumo { get; set; }
         public virtual DbSet<Movimento> Movimento { get; set; }
         public virtual DbSet<TipoCedula> TipoCedula { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=TesourariaOnline;user id=Admin;password=Admin321");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=10.91.142.186;Database=TesourariaOnline;user id=Admin;password=Admin321");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+
             modelBuilder.Entity<Cedula>(entity =>
             {
                 entity.Property(e => e.Descricao)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Valor).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.TipoCedula)
                     .WithMany(p => p.Cedula)
@@ -67,6 +73,10 @@ namespace TesourariaOnline.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Valor).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.ValorDoacao).HasColumnType("decimal(18, 2)");
+
                 entity.HasOne(d => d.ContageResumo)
                     .WithMany(p => p.ContagemCheque)
                     .HasForeignKey(d => d.ContageResumoId)
@@ -90,6 +100,8 @@ namespace TesourariaOnline.Models
                 entity.Property(e => e.Usuario)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.ValorSistema).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Movimento)
                     .WithMany(p => p.ContagemResumo)
@@ -124,6 +136,17 @@ namespace TesourariaOnline.Models
                 entity.Property(e => e.Simbolo)
                     .IsRequired()
                     .HasMaxLength(10)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Usuario>(entity =>
+            {
+                entity.Property(e => e.Nome)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Senha)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
         }
