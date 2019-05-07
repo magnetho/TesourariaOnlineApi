@@ -31,7 +31,7 @@ namespace TesourariaOnline.Controllers
             var usuarioResult = await _context.Usuario.FirstOrDefaultAsync(u => u.Nome == usuario.Nome && u.Senha == usuario.Senha);
 
             if (usuarioResult != null)
-                return Ok();
+                return Ok(usuarioResult);
             else
                 return NotFound();
         }
