@@ -46,6 +46,12 @@ namespace TesourariaOnline
                 app.UseHsts();
             }
 
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:4200"
+                                    );
+            });
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }
