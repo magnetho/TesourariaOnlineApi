@@ -14,6 +14,6 @@ namespace TesourariaOnline.Models
         public string Descricao { get; set; }
         public string Simbolo { get; set; }
 
-        public ICollection<Cedula> Cedula { get; set; }
+        public virtual ICollection<Cedula> Cedula { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace TesourariaOnline.Models
         public string Doador { get; set; }
         public decimal? ValorDoacao { get; set; }
 
-        public ContagemResumo ContageResumo { get; set; }
+        public virtual ContagemResumo ContageResumo { get; set; }
     }
 }

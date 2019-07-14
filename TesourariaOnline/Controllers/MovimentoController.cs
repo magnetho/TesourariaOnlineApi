@@ -46,6 +46,26 @@ namespace TesourariaOnline.Controllers
             return Ok(movimento);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMovimentoListComFiltro(DateTime? dataAlteracao, int? status)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var movimentoListToView = await _context.Movimento.Where(m => (dataAlteracao == null ? true : m.DataAlteracao ==  dataAlteracao.Value)
+                                                                                 && (status == null ? true : m.Status == status.Value))
+                                                           .ToListAsync();
+
+            if (movimentoListToView == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(movimentoListToView);
+        }
+
         // PUT: api/Movimento/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMovimento([FromRoute] int id, [FromBody] Movimento movimento)

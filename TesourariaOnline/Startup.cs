@@ -29,7 +29,7 @@ namespace TesourariaOnline
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var connection = @"Server=localhost;Database=TesourariaOnline;user id=Admin;password=Admin321";
+            var connection = @"Server=10.91.142.186;Database=TesourariaOnline;user id=Admin;password=Admin321";
             services.AddDbContext<TesourariaOnlineContext>(options => options.UseSqlServer(connection));
 
         }
@@ -45,6 +45,12 @@ namespace TesourariaOnline
             {
                 app.UseHsts();
             }
+
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:4200"
+                                    );
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
